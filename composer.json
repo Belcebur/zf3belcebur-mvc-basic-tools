@@ -1,6 +1,6 @@
 {
-  "name": "zf3belcebur/oauth2-social-client",
-  "description": "ZF3 extends module from thephpleague/oauth2-client",
+  "name": "zf3belcebur/mvc-basic-tools",
+  "description": "ZF3 tools for controllers,views, ...",
   "type": "library",
   "require": {
     "php": "^7.1",
