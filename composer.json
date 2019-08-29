@@ -1,0 +1,37 @@
+{
+  "name": "zf3belcebur/oauth2-social-client",
+  "description": "ZF3 extends module from thephpleague/oauth2-client",
+  "type": "library",
+  "require": {
+    "php": "^7.1",
+    "ext-iconv": "*",
+    "ext-intl": "*",
+    "zendframework/zend-mvc": "^3.0.1",
+    "zendframework/zend-mvc-form": "^1.0",
+    "zendframework/zend-mvc-i18n": "^1.0",
+    "zendframework/zend-paginator": "^2.0",
+    "doctrine/doctrine-module": "2.*",
+    "doctrine/doctrine-orm-module": "2.*"
+  },
+  "suggest": {
+    "zf3belcebur/doctrine-orm-resources": "DoctrineORM Resources to ZF3",
+    "zf3belcebur/materialize-css-helper": "MaterializeCss Helper integration to ZF3",
+    "zf3belcebur/mongodb-logger": "MongoDb Logger integration to ZF3",
+    "zf3belcebur/oauth2-social-client": "ZF3 extends module from thephpleague/oauth2-client",
+    "doctrine/doctrine-orm-module": "DoctrineORMModule integrates Doctrine 2 ORM with Zend Framework quickly and easily."
+  },
+  "license": "Apache-2.0",
+  "authors": [
+    {
+      "name": "David Garcia",
+      "email": "garcia.gordo.david@gmail.com",
+      "homepage": "https://github.com/Belcebur"
+    }
+  ],
+  "minimum-stability": "stable",
+  "autoload": {
+    "psr-4": {
+      "ZF3Belcebur\\MvcBasicTools\\": "src/"
+    }
+  }
+}
