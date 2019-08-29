@@ -1,6 +1,19 @@
 {
   "name": "zf3belcebur/mvc-basic-tools",
-  "description": "ZF3 tools for controllers,views, ...",
+  "description": "ZF3 tools for controllers,views,helpers, plugins and more ...",
+  "keywords": [
+    "Doctrine",
+    "ORM",
+    "View",
+    "ViewHelper",
+    "Controller",
+    "Controller Plugin",
+    "ORM Entity Traits",
+    "Gedmo",
+    "Query",
+    "Repository",
+    "Validator"
+  ],
   "type": "library",
   "require": {
     "php": "^7.1",
