@@ -11,6 +11,8 @@ namespace ZF3Belcebur\MvcBasicTools\View\Helper;
 
 use Zend\Form\FormElementManager\FormElementManagerV3Polyfill;
 use Zend\Http\PhpEnvironment\Request;
+use Zend\Mvc\Controller\Plugin\Params as ParamsPlugin;
+use Zend\Mvc\Controller\PluginManager;
 use Zend\Mvc\I18n\Router\TranslatorAwareTreeRouteStack;
 use Zend\Router\Http\RouteMatch;
 use Zend\Router\Http\TreeRouteStack;
@@ -53,16 +55,53 @@ class BTools extends AbstractHelper
     protected $request;
 
     /**
+     * @var ParamsPlugin
+     */
+    protected $params;
+
+    /**
+     * @var PluginManager
+     */
+    protected $pluginManager;
+
+    /**
      * Tools constructor.
      * @param TranslatorAwareTreeRouteStack|TreeRouteStack|SimpleRouteStack|RouteStackInterface $router
      * @param Request $request
      * @param FormElementManagerV3Polyfill $formElementManager
+     * @param PluginManager $pluginManager
      */
-    public function __construct(RouteStackInterface $router, Request $request, FormElementManagerV3Polyfill $formElementManager)
+    public function __construct(RouteStackInterface $router, Request $request, FormElementManagerV3Polyfill $formElementManager, PluginManager $pluginManager)
     {
         $this->router = $router;
         $this->request = $request;
         $this->formElementManager = $formElementManager;
+        $this->pluginManager = $pluginManager;
+        $this->params = $pluginManager->get(ParamsPlugin::class);
+    }
+
+    /**
+     * @return PluginManager
+     */
+    public function getPluginManager(): PluginManager
+    {
+        return $this->pluginManager;
+    }
+
+    /**
+     * @return Request
+     */
+    public function getRequest(): Request
+    {
+        return $this->request;
+    }
+
+    /**
+     * @return ParamsPlugin
+     */
+    public function getParams(): ParamsPlugin
+    {
+        return $this->params;
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace ZF3Belcebur\MvcBasicTools\Factory\View\Helper;
 
 use Interop\Container\ContainerInterface;
+use Zend\Mvc\Controller\PluginManager;
 use Zend\ServiceManager\Factory\FactoryInterface;
 use ZF3Belcebur\MvcBasicTools\View\Helper\BTools;
 
@@ -20,7 +21,8 @@ class ToolsViewHelperFactory implements FactoryInterface
         return new BTools(
             $container->get('Router'),
             $container->get('Request'),
-            $container->get('FormElementManager')
+            $container->get('FormElementManager'),
+            $container->get(PluginManager::class)
         );
     }
 }

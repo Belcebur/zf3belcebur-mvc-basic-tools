@@ -171,6 +171,9 @@ BTools::slugify('त्यस्तो नमस्'); // 'tyasto-namas'
 BTools::slugify('hola que tal'); // 'hola-que-tal'
 BTools::slugify('привет, что такой'); // 'privet-cto-takoj'
 
+$bTools->getParams(); // return Params Plugin Controller 
+$bTools->getParams()->fromRoute(); // return array params from route 
+$bTools->getPluginManager(); 
 $bTools->getMetaBy('name','description'); // get meta name=description content 
 $bTools->getMetaBy('property','og:locale'); // get meta property=og:locale content 
 $bTools->getMetaByName('description','things'); // get meta name=description content, if not exist return 'things" 
