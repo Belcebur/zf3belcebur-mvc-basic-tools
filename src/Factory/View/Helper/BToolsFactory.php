@@ -7,7 +7,7 @@ use Zend\Mvc\Controller\PluginManager;
 use Zend\ServiceManager\Factory\FactoryInterface;
 use ZF3Belcebur\MvcBasicTools\View\Helper\BTools;
 
-class ToolsViewHelperFactory implements FactoryInterface
+class BToolsFactory implements FactoryInterface
 {
     /**
      * @param ContainerInterface $container

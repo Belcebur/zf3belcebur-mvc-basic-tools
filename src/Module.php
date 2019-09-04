@@ -11,7 +11,7 @@ use Zend\ServiceManager\Config;
 use Zend\ServiceManager\ServiceLocatorInterface;
 use ZF3Belcebur\MvcBasicTools\Controller\Plugin\AuthenticatePlugin;
 use ZF3Belcebur\MvcBasicTools\Factory\Plugin\Controller\AuthenticatePluginFactory;
-use ZF3Belcebur\MvcBasicTools\Factory\View\Helper\ToolsViewHelperFactory;
+use ZF3Belcebur\MvcBasicTools\Factory\View\Helper\BToolsFactory;
 use ZF3Belcebur\MvcBasicTools\View\Helper\BTools;
 
 class Module implements ConfigProviderInterface, ViewHelperProviderInterface, ControllerPluginProviderInterface, ServiceProviderInterface
@@ -33,7 +33,7 @@ class Module implements ConfigProviderInterface, ViewHelperProviderInterface, Co
     {
         return [
             'factories' => [
-                BTools::class => ToolsViewHelperFactory::class,
+                BTools::class => BToolsFactory::class,
             ],
             'aliases' => [
                 'bTools' => BTools::class,
