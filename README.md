@@ -172,7 +172,6 @@ BTools::slugify('hola que tal'); // 'hola-que-tal'
 BTools::slugify('привет, что такой'); // 'privet-cto-takoj'
 
 $bTools->getParams(); // return Params Plugin Controller 
-$bTools->getParams()->fromRoute(); // return array params from route 
 $bTools->getPluginManager(); 
 $bTools->getMetaBy('name','description'); // get meta name=description content 
 $bTools->getMetaBy('property','og:locale'); // get meta property=og:locale content 
@@ -181,5 +180,13 @@ $bTools->getMetaByProperty('og:locale'); // get meta property=og:locale content
 $bTools->getRouteMatch();
 $bTools->getRouter();
 $bTools->getFormElementManager();
+$bTools->getMvcTranslator();
+ 
+// Only in view
+$bTools->getParams()->fromRoute(); // return array params from route
+//Layout Or View
+$bTools->getParamsFromRoute(); // return array params from route
+$bTools->getParamFromRoute('param','default'); // return param from route or default value
+$bTools->getParams()->fromRoute(); // return array params from route 
 
 ```
