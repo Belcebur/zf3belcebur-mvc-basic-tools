@@ -14,11 +14,11 @@ class BToolsFactory implements FactoryInterface
      * @param string $requestedName
      * @param null|array $options
      *
-     * @return BTools
+     * @return BTools return BTools or your extended class
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
-        return new BTools(
+        return new $requestedName(
             $container->get('Router'),
             $container->get('Request'),
             $container->get('FormElementManager'),
