@@ -19,6 +19,7 @@ class BToolsFactory implements FactoryInterface
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
         return new $requestedName(
+            $container->get('MvcTranslator'),
             $container->get('Router'),
             $container->get('Request'),
             $container->get('FormElementManager'),

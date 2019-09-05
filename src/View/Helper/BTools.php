@@ -11,16 +11,21 @@ namespace ZF3Belcebur\MvcBasicTools\View\Helper;
 
 use Zend\Form\FormElementManager\FormElementManagerV3Polyfill;
 use Zend\Http\PhpEnvironment\Request;
+use Zend\I18n\Translator\TranslatorInterface;
 use Zend\Mvc\Controller\Plugin\Params as ParamsPlugin;
 use Zend\Mvc\Controller\PluginManager;
 use Zend\Mvc\I18n\Router\TranslatorAwareTreeRouteStack;
+use Zend\Mvc\I18n\Translator as MvcTranslator;
+use Zend\Mvc\InjectApplicationEventInterface;
 use Zend\Router\Http\RouteMatch;
 use Zend\Router\Http\TreeRouteStack;
 use Zend\Router\RouteStackInterface;
 use Zend\Router\SimpleRouteStack;
 use Zend\View\Helper\AbstractHelper;
 use Zend\View\Renderer\PhpRenderer;
+use function array_key_exists;
 use function is_string;
+use function preg_match;
 use function strip_tags;
 use function strlen;
 use function strrpos;
@@ -63,45 +68,27 @@ class BTools extends AbstractHelper
      * @var PluginManager
      */
     protected $pluginManager;
+    /**
+     * @var TranslatorInterface|MvcTranslator
+     */
+    private $mvcTranslator;
 
     /**
      * Tools constructor.
+     * @param MvcTranslator|TranslatorInterface $mvcTranslator
      * @param TranslatorAwareTreeRouteStack|TreeRouteStack|SimpleRouteStack|RouteStackInterface $router
      * @param Request $request
      * @param FormElementManagerV3Polyfill $formElementManager
      * @param PluginManager $pluginManager
      */
-    public function __construct(RouteStackInterface $router, Request $request, FormElementManagerV3Polyfill $formElementManager, PluginManager $pluginManager)
+    public function __construct(TranslatorInterface $mvcTranslator, RouteStackInterface $router, Request $request, FormElementManagerV3Polyfill $formElementManager, PluginManager $pluginManager)
     {
         $this->router = $router;
         $this->request = $request;
         $this->formElementManager = $formElementManager;
         $this->pluginManager = $pluginManager;
         $this->params = $pluginManager->get(ParamsPlugin::class);
-    }
-
-    /**
-     * @return PluginManager
-     */
-    public function getPluginManager(): PluginManager
-    {
-        return $this->pluginManager;
-    }
-
-    /**
-     * @return Request
-     */
-    public function getRequest(): Request
-    {
-        return $this->request;
-    }
-
-    /**
-     * @return ParamsPlugin
-     */
-    public function getParams(): ParamsPlugin
-    {
-        return $this->params;
+        $this->mvcTranslator = $mvcTranslator;
     }
 
     /**
@@ -134,7 +121,7 @@ class BTools extends AbstractHelper
 
         $content = preg_replace('/<br(\s*)?\/?>/i', $separator, $string);
 
-        if (\preg_match($trimPattern, '') !== false) {
+        if (preg_match($trimPattern, '') !== false) {
             return self::trim($content, $trimPattern);
         }
 
@@ -289,6 +276,31 @@ class BTools extends AbstractHelper
     }
 
     /**
+     * @return PluginManager
+     */
+    public function getPluginManager(): PluginManager
+    {
+        return $this->pluginManager;
+    }
+
+    /**
+     * @return Request
+     */
+    public function getRequest(): Request
+    {
+        return $this->request;
+    }
+
+    /**
+     * @return ParamsPlugin
+     * @uses  if you want to get params from route use the getParamsFromRoute or getParamFromRoute methods
+     */
+    public function getParams(): ParamsPlugin
+    {
+        return $this->params;
+    }
+
+    /**
      * @param string $typeValue description,theme-color, ...
      * @param string $defaultValue default value if not exist
      * @return string|null
@@ -310,7 +322,7 @@ class BTools extends AbstractHelper
         $headMeta = $view->headMeta();
         foreach ($headMeta->getContainer() as $meta) {
             $metaArray = (array)$meta;
-            if (\array_key_exists($type, $metaArray) && $metaArray[$type] === $typeValue) {
+            if (array_key_exists($type, $metaArray) && $metaArray[$type] === $typeValue) {
                 return $metaArray['content'] ?? null;
             }
         }
@@ -349,6 +361,41 @@ class BTools extends AbstractHelper
     public function getFormElementManager(): FormElementManagerV3Polyfill
     {
         return $this->formElementManager;
+    }
+
+    /**
+     * @return TranslatorInterface|MvcTranslator
+     */
+    public function getMvcTranslator(): TranslatorInterface
+    {
+        return $this->mvcTranslator;
+    }
+
+    /**
+     * @param string|null $param
+     * @param null $default
+     * @return mixed|null
+     */
+    public function getParamFromRoute(string $param = null, $default = null)
+    {
+        return $this->getParamsFromRoute()[$param] ?? $default;
+
+    }
+
+    /**
+     * @return array
+     */
+    public function getParamsFromRoute(): array
+    {
+        $params = $this->getParams();
+        if ($params->getController() instanceof InjectApplicationEventInterface) {
+            return $params->fromRoute();
+        }
+        $routeMatch = $this->getRouteMatch();
+        if ($routeMatch) {
+            return $routeMatch->getParams();
+        }
+        return [];
     }
 
 }
