@@ -27,6 +27,7 @@
     "doctrine/doctrine-orm-module": "2.*"
   },
   "suggest": {
+    "zf3belcebur/doctrine-orm-fast-api": "Quickly create an automatic API CRUD with your Doctrine ORM connection",
     "zf3belcebur/doctrine-orm-resources": "DoctrineORM Resources to ZF3",
     "zf3belcebur/materialize-css-helper": "MaterializeCss Helper integration to ZF3",
     "zf3belcebur/mongodb-logger": "MongoDb Logger integration to ZF3",
