@@ -33,9 +33,11 @@ $authPlugin->logout(); // Clear session
 Extends your controller with more functionalities
 
 - `ZF3Belcebur\MVCBasicTools\BaseController`
+- `ZF3Belcebur\MVCBasicTools\BaseRestfulController`
 - `ZF3Belcebur\MVCBasicTools\FormManagerController`
+- `ZF3Belcebur\MVCBasicTools\FormManagerRestfulController`
 
-### `ZF3Belcebur\MVCBasicTools\BaseController` Properties
+### `ZF3Belcebur\MVCBasicTools\BaseController & ZF3Belcebur\MVCBasicTools\BaseRestfulController` Properties
 
 ```php
 
@@ -51,7 +53,7 @@ Extends your controller with more functionalities
 
 
 
-### `ZF3Belcebur\MVCBasicTools\BaseController` Methods
+### `ZF3Belcebur\MVCBasicTools\BaseController & ZF3Belcebur\MVCBasicTools\BaseRestfulController`  Methods
 
 - Create Paginator from Doctrine ORM QueryBuilder
 ```php
@@ -137,7 +139,7 @@ Extends your controller with more functionalities
 ```
 
 
-### `ZF3Belcebur\MVCBasicTools\FormManagerController` Methods
+### `ZF3Belcebur\MVCBasicTools\FormManagerController & ZF3Belcebur\MVCBasicTools\FormManagerController` Methods
 
 - Extends `ZF3Belcebur\MVCBasicTools\BaseController`
 - getFormManager();
@@ -146,7 +148,9 @@ Extends your controller with more functionalities
 ## Controller Factories
 
 - `ZF3Belcebur\MVCBasicTools\Factory\ControllerBaseControllerFactory`
+- `ZF3Belcebur\MVCBasicTools\Factory\ControllerBaseRestfulControllerFactory`
 - `ZF3Belcebur\MVCBasicTools\Factory\ControllerFormManagerControllerFactory`
+- `ZF3Belcebur\MVCBasicTools\Factory\ControllerFormManagerRestfulControllerFactory`
 
 
 

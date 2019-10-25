@@ -10,7 +10,7 @@ namespace ZF3Belcebur\MvcBasicTools\Controller;
 
 
 use Doctrine\ORM\EntityManager;
-use Zend\Mvc\Controller\AbstractActionController;
+use Zend\Mvc\Controller\AbstractRestfulController;
 use Zend\Mvc\I18n\Router\TranslatorAwareTreeRouteStack;
 use Zend\Mvc\I18n\Translator as MvcTranslator;
 use Zend\Router\Http\TreeRouteStack;
@@ -20,10 +20,10 @@ use ZF3Belcebur\MvcBasicTools\ControllerTrait\BasicControllerTrait;
 use function defined;
 
 /**
- * Class BaseController
+ * Class BaseRestfulController
  * @package ZF3Belcebur\MvcBasicTools\Controller
  */
-abstract class BaseController extends AbstractActionController
+abstract class BaseRestfulController extends AbstractRestfulController
 {
 
     use BasicControllerTrait;
@@ -42,4 +42,5 @@ abstract class BaseController extends AbstractActionController
         $this->router = $router;
         $this->translator = $mvcTranslator->getTranslator();
     }
+
 }
