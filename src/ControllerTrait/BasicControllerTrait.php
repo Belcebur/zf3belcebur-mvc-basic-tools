@@ -8,6 +8,7 @@ use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Query;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\Tools\Pagination\Paginator as DoctrinePaginator;
+use DoctrineModule\Stdlib\Hydrator\DoctrineObject;
 use DoctrineORMModule\Paginator\Adapter\DoctrinePaginator as DoctrineAdapter;
 use Zend\Http\PhpEnvironment\Request;
 use Zend\Http\PhpEnvironment\Response;
@@ -44,6 +45,9 @@ trait BasicControllerTrait
 {
     /** @var EntityManager */
     protected $entityManager;
+
+    /** @var DoctrineObject */
+    protected $hydrator;
 
     /** @var MvcTranslator */
     protected $mvcTranslator;

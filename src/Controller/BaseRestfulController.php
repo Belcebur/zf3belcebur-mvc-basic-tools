@@ -10,6 +10,7 @@ namespace ZF3Belcebur\MvcBasicTools\Controller;
 
 
 use Doctrine\ORM\EntityManager;
+use DoctrineModule\Stdlib\Hydrator\DoctrineObject;
 use Zend\Mvc\Controller\AbstractRestfulController;
 use Zend\Mvc\I18n\Router\TranslatorAwareTreeRouteStack;
 use Zend\Mvc\I18n\Translator as MvcTranslator;
@@ -38,6 +39,7 @@ abstract class BaseRestfulController extends AbstractRestfulController
     {
         $this->limitItemsPerPage = defined('DEFAULT_LIMIT_ITEMS_PER_PAGE') ? DEFAULT_LIMIT_ITEMS_PER_PAGE : 50;
         $this->entityManager = $entityManager;
+        $this->hydrator = new DoctrineObject($entityManager);
         $this->mvcTranslator = $mvcTranslator;
         $this->router = $router;
         $this->translator = $mvcTranslator->getTranslator();
